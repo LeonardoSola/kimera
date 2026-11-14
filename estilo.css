@@ -1,0 +1,5 @@
+:root{--f:#0f1218;--t:#e7ebf3;--s:#9aa4b6;--a:#ffcc33}
+body{margin:0;background:var(--f);color:var(--t);font:17px/1.65 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+h1{font-size:44px;margin:0;color:var(--a);letter-spacing:.5px}h2{margin-top:32px}
+a{color:#7aa7ff}.sub{color:var(--s)}nav a{margin-right:16px}
