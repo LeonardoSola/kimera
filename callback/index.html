@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kimera - conectar</title><link rel="stylesheet" href="../estilo.css">
+<style>#codigo{font:15px/1.4 ui-monospace,Consolas,monospace;background:#171b23;border:1px solid #2a303c;border-radius:10px;padding:14px;word-break:break-all}button{font-size:17px;padding:10px 18px;border-radius:10px;border:0;background:#ffcc33;cursor:pointer;margin-top:12px}</style>
+</head><body><main>
+<h1>Conectar</h1>
+<p id="msg" class="sub">Lendo a resposta da plataforma...</p>
+<div id="codigo" hidden></div>
+<button id="copiar" hidden>Copiar código</button>
+<p class="sub">Cole o código no <b>Configurar_Redes.bat</b> (no terminal do seu PC). Ele vale uma vez só, por poucos minutos, e só funciona junto com a chave que está no seu computador. Esta página não envia nada para lugar nenhum.</p>
+<script>
+const q = new URLSearchParams(location.search);
+const cod = q.get("code"), erro = q.get("error_description") || q.get("error");
+const msg = document.getElementById("msg"), box = document.getElementById("codigo"), bt = document.getElementById("copiar");
+if (cod) {
+  const texto = cod + (q.get("state") ? "|" + q.get("state") : "");
+  box.textContent = texto; box.hidden = false; bt.hidden = false;
+  msg.textContent = "Autorizado! Copie o código abaixo:";
+  bt.onclick = async () => { try { await navigator.clipboard.writeText(texto); bt.textContent = "Copiado!"; } catch (e) { bt.textContent = "Selecione e copie (Ctrl+C)"; } };
+} else {
+  msg.textContent = erro ? ("A plataforma recusou: " + erro) : "Nenhum código recebido. Comece pelo Configurar_Redes.bat.";
+}
+</script>
+</main></body></html>
